@@ -1,19 +1,20 @@
-import React, { useContext, useEffect, Fragment } from 'react'
-import { GithubContext } from '../context/github/githubContext'
-import { Link, useParams } from 'react-router-dom'
-import { Repos } from './../components/Repos'
+import React, { useContext, useEffect, Fragment } from 'react';
+import { GithubContext } from '../context/github/githubContext';
+import { Link, useParams } from 'react-router-dom';
+import { Repos } from './../components/Repos';
 
 export const Profile = ({ match }) => {
-  const { getUser, getRepos, loading, user, repos } = useContext(GithubContext)
-  const params = useParams()
+  const { getUser, getRepos, loading, user, repos } = useContext(GithubContext);
+  const params = useParams();
 
   useEffect(() => {
-    getUser(params.name)
-    getRepos(params.name)
-  }, [])
+    getUser(params.name);
+    getRepos(params.name);
+    // eslint-disable-next-line
+  }, []);
 
   if (loading) {
-    return <p className='text-center'>Загрузка...</p>
+    return <p className='text-center'>Загрузка...</p>;
   }
 
   const {
@@ -29,7 +30,7 @@ export const Profile = ({ match }) => {
     following,
     public_repos,
     public_gists,
-  } = user
+  } = user;
 
   return (
     <Fragment>
@@ -93,5 +94,5 @@ export const Profile = ({ match }) => {
 
       <Repos repos={repos} />
     </Fragment>
-  )
-}
+  );
+};
